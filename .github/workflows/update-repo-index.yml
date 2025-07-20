@@ -1,0 +1,173 @@
+name: Update Repository Index
+
+on:
+  schedule:
+    # Run daily at 6:00 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allow manual triggering
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/**'
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Cache Python dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Set up GitHub CLI
+        run: |
+          # GitHub CLI is pre-installed on GitHub Actions runners
+          gh --version
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+      
+      - name: Check for existing database
+        id: check_db
+        run: |
+          if [ -f "index.db" ]; then
+            echo "database_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "database_exists=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Update repository database
+        run: |
+          echo "🔄 Updating repository database..."
+          python scripts/update_repos.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Generate README
+        run: |
+          echo "📝 Generating README.md..."
+          python scripts/generate_readme.py
+      
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git add .
+          if git diff --staged --quiet; then
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+            echo "No changes detected in repository data"
+          else
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in repository data"
+            git diff --staged --name-only
+          fi
+      
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changes_detected == 'true'
+        run: |
+          # Get current date for commit message
+          CURRENT_DATE=$(date -u +"%Y-%m-%d")
+          
+          # Check if this is the first database creation
+          if [ "${{ steps.check_db.outputs.database_exists }}" = "false" ]; then
+            COMMIT_MSG="🚀 Initialize repository index database and automation (${CURRENT_DATE})"
+          else
+            # Count total repositories for commit message
+            REPO_COUNT=$(python -c "
+            import sqlite3
+            conn = sqlite3.connect('index.db')
+            cursor = conn.cursor()
+            cursor.execute('SELECT COUNT(*) FROM repositories WHERE is_fork = 0')
+            print(cursor.fetchone()[0])
+            conn.close()
+            ")
+            COMMIT_MSG="📊 Update repository index: ${REPO_COUNT} repositories (${CURRENT_DATE})"
+          fi
+          
+          echo "Committing with message: $COMMIT_MSG"
+          git commit -m "$COMMIT_MSG"
+          git push origin main
+      
+      - name: Create summary
+        if: always()
+        run: |
+          echo "## 📊 Repository Index Update Summary" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "index.db" ]; then
+            STATS=$(python -c "
+            import sqlite3
+            from datetime import datetime
+            
+            conn = sqlite3.connect('index.db')
+            cursor = conn.cursor()
+            
+            # Get statistics
+            cursor.execute('SELECT COUNT(*) FROM repositories WHERE is_fork = 0')
+            total_repos = cursor.fetchone()[0]
+            
+            cursor.execute('SELECT SUM(star_count) FROM repositories WHERE is_fork = 0')
+            total_stars = cursor.fetchone()[0] or 0
+            
+            cursor.execute('SELECT COUNT(DISTINCT primary_language) FROM repositories WHERE primary_language IS NOT NULL AND primary_language != \"\" AND is_fork = 0')
+            unique_languages = cursor.fetchone()[0]
+            
+            cursor.execute('SELECT name, star_count FROM repositories WHERE is_fork = 0 ORDER BY star_count DESC LIMIT 1')
+            top_repo = cursor.fetchone()
+            
+            print(f'**Total Repositories:** {total_repos}')
+            print(f'**Total Stars:** {total_stars}')
+            print(f'**Programming Languages:** {unique_languages}')
+            if top_repo and top_repo[1] > 0:
+                print(f'**Most Starred:** {top_repo[0]} ({top_repo[1]} ⭐)')
+            
+            conn.close()
+            ")
+            
+            echo "$STATS" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Last Updated:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.check_changes.outputs.changes_detected }}" = "true" ]; then
+            echo "**Status:** ✅ Repository index updated successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**Status:** ℹ️ No changes detected - index is up to date" >> $GITHUB_STEP_SUMMARY
+          fi
+      
+      - name: Error notification
+        if: failure()
+        run: |
+          echo "## ❌ Repository Index Update Failed" >> $GITHUB_STEP_SUMMARY
+          echo "The automated repository index update encountered an error." >> $GITHUB_STEP_SUMMARY
+          echo "Please check the workflow logs for details." >> $GITHUB_STEP_SUMMARY
+          echo "**Time:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY

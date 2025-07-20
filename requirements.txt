@@ -1,0 +1,19 @@
+# Python dependencies for repository index automation
+# 
+# Core dependencies for the repository index updater and README generator
+
+# No external dependencies required - using only Python standard library
+# The scripts use:
+# - sqlite3 (built-in)
+# - json (built-in)
+# - subprocess (built-in)
+# - datetime (built-in)
+# - os (built-in)
+# - sys (built-in)
+# - typing (built-in in Python 3.5+)
+
+# If you want to add additional features in the future, consider:
+# requests>=2.31.0  # For HTTP requests if moving away from gh CLI
+# click>=8.1.0      # For better CLI interface
+# rich>=13.0.0      # For enhanced terminal output
+# pydantic>=2.0.0   # For data validation
