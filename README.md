@@ -1,15 +1,15 @@
 # 📚 Repository Index
 A comprehensive index of all my GitHub repositories, categorized by programming language and topic.
-**Total Repositories:** 124  **Total Stars:** 9  **Last Updated:** July 20, 2025
+**Total Repositories:** 124  **Total Stars:** 9  **Last Updated:** July 21, 2025
 ---
 ## 📊 Repository Statistics
 | Language | Count | Percentage |
 |----------|-------|------------|
-| Java | 22 | 19.0% |
-| Python | 21 | 18.1% |
-| JavaScript | 21 | 18.1% |
-| Go | 18 | 15.5% |
-| C# | 13 | 11.2% |
+| Python | 22 | 18.8% |
+| Java | 22 | 18.8% |
+| JavaScript | 21 | 17.9% |
+| Go | 18 | 15.4% |
+| C# | 13 | 11.1% |
 | TypeScript | 5 | 4.3% |
 | HTML | 5 | 4.3% |
 | Jupyter Notebook | 3 | 2.6% |
@@ -18,6 +18,31 @@ A comprehensive index of all my GitHub repositories, categorized by programming 
 
 ---
 ## 🔤 Repositories by Programming Language
+### 🐍 Python Projects
+| S.No | Repository | Description | Stars | Forks |
+|------|------------|-------------|-------|-------|
+| 1 | [CSE537-Artificial-Intelligence-Stonybrook-University](https://github.com/sandeepkv93/CSE537-Artificial-Intelligence-Stonybrook-University) | Homework Assignments for CSE 537 - Artificial Intelligence Spring 2018 in Stony Brook University und... | 0 | 0 |
+| 2 | [Coursera-Intractive-Python-Programming](https://github.com/sandeepkv93/Coursera-Intractive-Python-Programming) | Weekly Assignments of Interactive Programming in Python in Coursera | 0 | 0 |
+| 3 | [Cricket-Updates-Free-SMS-Service](https://github.com/sandeepkv93/Cricket-Updates-Free-SMS-Service) |  | 0 | 0 |
+| 4 | [LinkedInScrapper](https://github.com/sandeepkv93/LinkedInScrapper) |  | 0 | 0 |
+| 5 | [MultiQC](https://github.com/sandeepkv93/MultiQC) |  | 0 | 0 |
+| 6 | [blank-app](https://github.com/sandeepkv93/blank-app) |  | 0 | 0 |
+| 7 | [chatbot](https://github.com/sandeepkv93/chatbot) |  | 0 | 0 |
+| 8 | [chatgpt-via-terminal](https://github.com/sandeepkv93/chatgpt-via-terminal) |  | 0 | 0 |
+| 9 | [codingpractice](https://github.com/sandeepkv93/codingpractice) |  | 0 | 0 |
+| 10 | [cse549_comp_bio_assignments](https://github.com/sandeepkv93/cse549_comp_bio_assignments) |  | 0 | 0 |
+| 11 | [learn-python](https://github.com/sandeepkv93/learn-python) |  | 0 | 0 |
+| 12 | [otel-metrics-simple-flask-app](https://github.com/sandeepkv93/otel-metrics-simple-flask-app) |  | 0 | 0 |
+| 13 | [otelviz](https://github.com/sandeepkv93/otelviz) |  | 0 | 0 |
+| 14 | [podgen](https://github.com/sandeepkv93/podgen) | 🎙️ AI-powered command-line tool that converts text scripts into professional podcast audio with mult... | 0 | 0 |
+| 15 | [python-flask-sample-app](https://github.com/sandeepkv93/python-flask-sample-app) | Starter code for Python Flask and Deployment in Heroku | 0 | 0 |
+| 16 | [reddit-saved-posts-backup](https://github.com/sandeepkv93/reddit-saved-posts-backup) | Automated Reddit saved posts backup with OAuth, SQLite tracking, and daily GitHub Actions | 0 | 0 |
+| 17 | [repo-index](https://github.com/sandeepkv93/repo-index) | A comprehensive index of all my GitHub repositories, categorized by programming language and topic | 0 | 0 |
+| 18 | [sudoku-solver-comparitive-analysis](https://github.com/sandeepkv93/sudoku-solver-comparitive-analysis) | A comparative study of different algorithms like depth-first-search with backtracking and AC3, genet... | 0 | 0 |
+| 19 | [text2podcast](https://github.com/sandeepkv93/text2podcast) | Convert text scripts to multi-speaker podcasts using AI-powered text-to-speech | 0 | 0 |
+| 20 | [utility-scripts](https://github.com/sandeepkv93/utility-scripts) | Programs with various utilities | 0 | 0 |
+| 21 | [workouts-sets-and-reps-counter](https://github.com/sandeepkv93/workouts-sets-and-reps-counter) |  | 0 | 0 |
+
 ### ☕ Java Projects
 | S.No | Repository | Description | Stars | Forks |
 |------|------------|-------------|-------|-------|
@@ -39,30 +64,6 @@ A comprehensive index of all my GitHub repositories, categorized by programming 
 | 16 | [springboot-starter-app](https://github.com/sandeepkv93/springboot-starter-app) |  | 0 | 0 |
 | 17 | [springbootquickstart](https://github.com/sandeepkv93/springbootquickstart) |  | 0 | 0 |
 | 18 | [user-management-springboot](https://github.com/sandeepkv93/user-management-springboot) |  | 0 | 0 |
-
-### 🐍 Python Projects
-| S.No | Repository | Description | Stars | Forks |
-|------|------------|-------------|-------|-------|
-| 1 | [CSE537-Artificial-Intelligence-Stonybrook-University](https://github.com/sandeepkv93/CSE537-Artificial-Intelligence-Stonybrook-University) | Homework Assignments for CSE 537 - Artificial Intelligence Spring 2018 in Stony Brook University und... | 0 | 0 |
-| 2 | [Coursera-Intractive-Python-Programming](https://github.com/sandeepkv93/Coursera-Intractive-Python-Programming) | Weekly Assignments of Interactive Programming in Python in Coursera | 0 | 0 |
-| 3 | [Cricket-Updates-Free-SMS-Service](https://github.com/sandeepkv93/Cricket-Updates-Free-SMS-Service) |  | 0 | 0 |
-| 4 | [LinkedInScrapper](https://github.com/sandeepkv93/LinkedInScrapper) |  | 0 | 0 |
-| 5 | [MultiQC](https://github.com/sandeepkv93/MultiQC) |  | 0 | 0 |
-| 6 | [blank-app](https://github.com/sandeepkv93/blank-app) |  | 0 | 0 |
-| 7 | [chatbot](https://github.com/sandeepkv93/chatbot) |  | 0 | 0 |
-| 8 | [chatgpt-via-terminal](https://github.com/sandeepkv93/chatgpt-via-terminal) |  | 0 | 0 |
-| 9 | [codingpractice](https://github.com/sandeepkv93/codingpractice) |  | 0 | 0 |
-| 10 | [cse549_comp_bio_assignments](https://github.com/sandeepkv93/cse549_comp_bio_assignments) |  | 0 | 0 |
-| 11 | [learn-python](https://github.com/sandeepkv93/learn-python) |  | 0 | 0 |
-| 12 | [otel-metrics-simple-flask-app](https://github.com/sandeepkv93/otel-metrics-simple-flask-app) |  | 0 | 0 |
-| 13 | [otelviz](https://github.com/sandeepkv93/otelviz) |  | 0 | 0 |
-| 14 | [podgen](https://github.com/sandeepkv93/podgen) | 🎙️ AI-powered command-line tool that converts text scripts into professional podcast audio with mult... | 0 | 0 |
-| 15 | [python-flask-sample-app](https://github.com/sandeepkv93/python-flask-sample-app) | Starter code for Python Flask and Deployment in Heroku | 0 | 0 |
-| 16 | [reddit-saved-posts-backup](https://github.com/sandeepkv93/reddit-saved-posts-backup) | Automated Reddit saved posts backup with OAuth, SQLite tracking, and daily GitHub Actions | 0 | 0 |
-| 17 | [sudoku-solver-comparitive-analysis](https://github.com/sandeepkv93/sudoku-solver-comparitive-analysis) | A comparative study of different algorithms like depth-first-search with backtracking and AC3, genet... | 0 | 0 |
-| 18 | [text2podcast](https://github.com/sandeepkv93/text2podcast) | Convert text scripts to multi-speaker podcasts using AI-powered text-to-speech | 0 | 0 |
-| 19 | [utility-scripts](https://github.com/sandeepkv93/utility-scripts) | Programs with various utilities | 0 | 0 |
-| 20 | [workouts-sets-and-reps-counter](https://github.com/sandeepkv93/workouts-sets-and-reps-counter) |  | 0 | 0 |
 
 ### 🟨 JavaScript Projects
 | S.No | Repository | Description | Stars | Forks |
@@ -165,11 +166,10 @@ A comprehensive index of all my GitHub repositories, categorized by programming 
 | 9 | [nodejs-ut-example](https://github.com/sandeepkv93/nodejs-ut-example) |  | 0 | 0 |
 | 10 | [postgres-db-basics](https://github.com/sandeepkv93/postgres-db-basics) |  | 0 | 0 |
 | 11 | [programmernotes](https://github.com/sandeepkv93/programmernotes) |  | 0 | 0 |
-| 12 | [repo-index](https://github.com/sandeepkv93/repo-index) | A comprehensive index of all my GitHub repositories, categorized by programming language and topic | 0 | 0 |
-| 13 | [resumebased](https://github.com/sandeepkv93/resumebased) |  | 0 | 0 |
-| 14 | [sandeepkv93](https://github.com/sandeepkv93/sandeepkv93) | Config files for my GitHub profile. | 0 | 0 |
-| 15 | [studyplan](https://github.com/sandeepkv93/studyplan) | List of exhaustive resource to learn | 0 | 0 |
-| 16 | [test-manual-github-actions](https://github.com/sandeepkv93/test-manual-github-actions) |  | 0 | 0 |
+| 12 | [resumebased](https://github.com/sandeepkv93/resumebased) |  | 0 | 0 |
+| 13 | [sandeepkv93](https://github.com/sandeepkv93/sandeepkv93) | Config files for my GitHub profile. | 0 | 0 |
+| 14 | [studyplan](https://github.com/sandeepkv93/studyplan) | List of exhaustive resource to learn | 0 | 0 |
+| 15 | [test-manual-github-actions](https://github.com/sandeepkv93/test-manual-github-actions) |  | 0 | 0 |
 
 ---
 ## 🎯 Repositories by Category
@@ -328,7 +328,7 @@ A comprehensive index of all my GitHub repositories, categorized by programming 
 | 32 | [otelviz](https://github.com/sandeepkv93/otelviz) |  | Python | 0 | 0 |
 | 33 | [postgres-db-basics](https://github.com/sandeepkv93/postgres-db-basics) |  | N/A | 0 | 0 |
 | 34 | [readjson-csharp](https://github.com/sandeepkv93/readjson-csharp) |  | C# | 0 | 0 |
-| 35 | [repo-index](https://github.com/sandeepkv93/repo-index) | A comprehensive index of all my GitHub repositories, categorized by programming language and topic | N/A | 0 | 0 |
+| 35 | [repo-index](https://github.com/sandeepkv93/repo-index) | A comprehensive index of all my GitHub repositories, categorized by programming language and topic | Python | 0 | 0 |
 | 36 | [resumebased](https://github.com/sandeepkv93/resumebased) |  | N/A | 0 | 0 |
 | 37 | [sandeepkv93.github.io](https://github.com/sandeepkv93/sandeepkv93.github.io) | Portfolio Website | HTML | 0 | 0 |
 | 38 | [simplegochi](https://github.com/sandeepkv93/simplegochi) |  | Go | 0 | 0 |
@@ -367,4 +367,4 @@ This repository index is automatically updated daily using GitHub Actions. The a
 - Regenerates this README.md with current statistics
 - Commits changes if any updates are detected
 
-*Last automated update: 2025-07-20 16:14:50 UTC*
+*Last automated update: 2025-07-21 03:28:08 UTC*
