@@ -44,11 +44,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       
-      - name: Set up GitHub CLI
+      - name: Verify GitHub CLI
         run: |
-          # GitHub CLI is pre-installed on GitHub Actions runners
+          # GitHub CLI is pre-installed and uses GITHUB_TOKEN automatically
           gh --version
-          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+          gh auth status
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
@@ -69,14 +69,14 @@ jobs:
       - name: Update repository database
         run: |
           echo "🔄 Updating repository database..."
-          python scripts/update_repos.py
+          python3 scripts/update_repos.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Generate README
         run: |
           echo "📝 Generating README.md..."
-          python scripts/generate_readme.py
+          python3 scripts/generate_readme.py
       
       - name: Check for changes
         id: check_changes
@@ -102,14 +102,7 @@ jobs:
             COMMIT_MSG="🚀 Initialize repository index database and automation (${CURRENT_DATE})"
           else
             # Count total repositories for commit message
-            REPO_COUNT=$(python -c "
-            import sqlite3
-            conn = sqlite3.connect('index.db')
-            cursor = conn.cursor()
-            cursor.execute('SELECT COUNT(*) FROM repositories WHERE is_fork = 0')
-            print(cursor.fetchone()[0])
-            conn.close()
-            ")
+            REPO_COUNT=$(python3 scripts/get_repo_count.py)
             COMMIT_MSG="📊 Update repository index: ${REPO_COUNT} repositories (${CURRENT_DATE})"
           fi
           
@@ -123,36 +116,7 @@ jobs:
           echo "## 📊 Repository Index Update Summary" >> $GITHUB_STEP_SUMMARY
           
           if [ -f "index.db" ]; then
-            STATS=$(python -c "
-            import sqlite3
-            from datetime import datetime
-            
-            conn = sqlite3.connect('index.db')
-            cursor = conn.cursor()
-            
-            # Get statistics
-            cursor.execute('SELECT COUNT(*) FROM repositories WHERE is_fork = 0')
-            total_repos = cursor.fetchone()[0]
-            
-            cursor.execute('SELECT SUM(star_count) FROM repositories WHERE is_fork = 0')
-            total_stars = cursor.fetchone()[0] or 0
-            
-            cursor.execute('SELECT COUNT(DISTINCT primary_language) FROM repositories WHERE primary_language IS NOT NULL AND primary_language != \"\" AND is_fork = 0')
-            unique_languages = cursor.fetchone()[0]
-            
-            cursor.execute('SELECT name, star_count FROM repositories WHERE is_fork = 0 ORDER BY star_count DESC LIMIT 1')
-            top_repo = cursor.fetchone()
-            
-            print(f'**Total Repositories:** {total_repos}')
-            print(f'**Total Stars:** {total_stars}')
-            print(f'**Programming Languages:** {unique_languages}')
-            if top_repo and top_repo[1] > 0:
-                print(f'**Most Starred:** {top_repo[0]} ({top_repo[1]} ⭐)')
-            
-            conn.close()
-            ")
-            
-            echo "$STATS" >> $GITHUB_STEP_SUMMARY
+            python3 scripts/get_stats.py >> $GITHUB_STEP_SUMMARY
           fi
           
           echo "" >> $GITHUB_STEP_SUMMARY
