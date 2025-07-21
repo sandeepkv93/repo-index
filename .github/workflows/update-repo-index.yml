@@ -108,6 +108,9 @@ jobs:
           
           echo "Committing with message: $COMMIT_MSG"
           git commit -m "$COMMIT_MSG"
+          
+          # Pull latest changes to avoid conflicts and push
+          git pull --rebase origin main || echo "Pull failed, attempting force push"
           git push origin main
       
       - name: Create summary
