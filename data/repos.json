@@ -1,11 +1,11 @@
 {
   "updated_date": "2026-11-23",
-  "updated_utc": "2026-11-23 04:57 UTC",
+  "updated_utc": "2026-11-23 16:55 UTC",
   "stats": {
     "total_repos": 83,
     "total_stars": 14,
     "total_forks": 5,
-    "total_languages": 12,
+    "total_languages": 11,
     "live_demos": 5
   },
   "languages": [
@@ -28,16 +28,16 @@
       "color": "#3572A5"
     },
     {
+      "language": "JavaScript",
+      "count": 6,
+      "percentage": 7.5,
+      "color": "#F1E05A"
+    },
+    {
       "language": "TypeScript",
       "count": 6,
       "percentage": 7.5,
       "color": "#3178C6"
-    },
-    {
-      "language": "JavaScript",
-      "count": 5,
-      "percentage": 6.2,
-      "color": "#F1E05A"
     },
     {
       "language": "C#",
@@ -62,12 +62,6 @@
       "count": 2,
       "percentage": 2.5,
       "color": "#A97BFF"
-    },
-    {
-      "language": "HTML",
-      "count": 1,
-      "percentage": 1.2,
-      "color": "#E34C26"
     },
     {
       "language": "Shell",
@@ -321,6 +315,20 @@
       "created_at": "2017-12-09"
     },
     {
+      "name": "distributed-systems-visualizer",
+      "description": "Interactive visual simulations for learning distributed systems, with step controls and in-page theory articles.",
+      "url": "https://github.com/sandeepkv93/distributed-systems-visualizer",
+      "demo": "https://sandeepkv93.github.io/distributed-systems-visualizer/",
+      "language": "TypeScript",
+      "language_color": "#3178C6",
+      "stars": 0,
+      "forks": 1,
+      "topics": [],
+      "category": "Distributed Systems",
+      "pushed_at": "2026-11-23",
+      "created_at": "2025-12-26"
+    },
+    {
       "name": "repo-index",
       "description": "A comprehensive index of all my GitHub repositories, categorized by programming language and topic",
       "url": "https://github.com/sandeepkv93/repo-index",
@@ -339,8 +347,8 @@
       "description": "Portfolio Website",
       "url": "https://github.com/sandeepkv93/sandeepkv93.github.io",
       "demo": "",
-      "language": "HTML",
-      "language_color": "#E34C26",
+      "language": "JavaScript",
+      "language_color": "#F1E05A",
       "stars": 0,
       "forks": 0,
       "topics": [],
@@ -378,20 +386,6 @@
       "category": "Frontend & Demos",
       "pushed_at": "2026-11-22",
       "created_at": "2023-09-08"
-    },
-    {
-      "name": "distributed-systems-visualizer",
-      "description": "Interactive visual simulations for learning distributed systems, with step controls and in-page theory articles.",
-      "url": "https://github.com/sandeepkv93/distributed-systems-visualizer",
-      "demo": "https://sandeepkv93.github.io/distributed-systems-visualizer/",
-      "language": "TypeScript",
-      "language_color": "#3178C6",
-      "stars": 0,
-      "forks": 1,
-      "topics": [],
-      "category": "Distributed Systems",
-      "pushed_at": "2026-11-22",
-      "created_at": "2025-12-26"
     },
     {
       "name": "retry-budget-validator",

@@ -13,13 +13,13 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 | Go | 25 | 31.2% |
 | Java | 17 | 21.2% |
 | Python | 14 | 17.5% |
+| JavaScript | 6 | 7.5% |
 | TypeScript | 6 | 7.5% |
-| JavaScript | 5 | 6.2% |
 | C# | 4 | 5.0% |
 | C | 2 | 2.5% |
 | Jupyter Notebook | 2 | 2.5% |
 | Kotlin | 2 | 2.5% |
-| HTML | 1 | 1.2% |
+| Shell | 1 | 1.2% |
 
 ---
 
@@ -96,6 +96,17 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 | 13 | [sudoku-solver-comparitive-analysis](https://github.com/sandeepkv93/sudoku-solver-comparitive-analysis) | A comparative study of different algorithms like depth-first-search with backtracking and AC3, ge... | 0 | 0 |
 | 14 | [MultiQC](https://github.com/sandeepkv93/MultiQC) | A tool to aggregate bioinformatics results across many samples into a single report with interact... | 0 | 0 |
 
+### JavaScript Projects (6)
+
+| S.No | Repository | Description | Stars | Forks |
+|------|------------|-------------|-------|-------|
+| 1 | [oidc-flow-demo](https://github.com/sandeepkv93/oidc-flow-demo) | Interactive visual guide to the OpenID Connect (OIDC) authentication flow. Explore and understand... | 1 | 0 |
+| 2 | [sandeepkv93.github.io](https://github.com/sandeepkv93/sandeepkv93.github.io) | Portfolio Website | 0 | 0 |
+| 3 | [node-user-auth-starterkit](https://github.com/sandeepkv93/node-user-auth-starterkit) | A complete toolkit for developers aiming to swiftly implement a user authentication system using... | 0 | 0 |
+| 4 | [nodejs-udp-server-client](https://github.com/sandeepkv93/nodejs-udp-server-client) | NodeJS Simple UDP Server and Client Example | 0 | 1 |
+| 5 | [react-todolist](https://github.com/sandeepkv93/react-todolist) | A React.js to-do list web application with user authentication via social login, synchronized wit... | 0 | 0 |
+| 6 | [fhiranalytics](https://github.com/sandeepkv93/fhiranalytics) | Analytics on FHIR Data | 0 | 1 |
+
 ### TypeScript Projects (6)
 
 | S.No | Repository | Description | Stars | Forks |
@@ -107,16 +118,6 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 | 5 | [google-keep-clone](https://github.com/sandeepkv93/google-keep-clone) | A production-ready Google Keep clone built with React frontend and Go backend, featuring real-tim... | 0 | 0 |
 | 6 | [document-analysis](https://github.com/sandeepkv93/document-analysis) |  | 0 | 0 |
 
-### JavaScript Projects (5)
-
-| S.No | Repository | Description | Stars | Forks |
-|------|------------|-------------|-------|-------|
-| 1 | [oidc-flow-demo](https://github.com/sandeepkv93/oidc-flow-demo) | Interactive visual guide to the OpenID Connect (OIDC) authentication flow. Explore and understand... | 1 | 0 |
-| 2 | [node-user-auth-starterkit](https://github.com/sandeepkv93/node-user-auth-starterkit) | A complete toolkit for developers aiming to swiftly implement a user authentication system using... | 0 | 0 |
-| 3 | [nodejs-udp-server-client](https://github.com/sandeepkv93/nodejs-udp-server-client) | NodeJS Simple UDP Server and Client Example | 0 | 1 |
-| 4 | [react-todolist](https://github.com/sandeepkv93/react-todolist) | A React.js to-do list web application with user authentication via social login, synchronized wit... | 0 | 0 |
-| 5 | [fhiranalytics](https://github.com/sandeepkv93/fhiranalytics) | Analytics on FHIR Data | 0 | 1 |
-
 ### C# Projects (4)
 
 | S.No | Repository | Description | Stars | Forks |
@@ -126,7 +127,7 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 | 3 | [CSharp-Design-Patterns](https://github.com/sandeepkv93/CSharp-Design-Patterns) |  | 0 | 0 |
 | 4 | [ds-and-algos-csharp](https://github.com/sandeepkv93/ds-and-algos-csharp) |  | 0 | 0 |
 
-### Other & Multi-Language Projects (12)
+### Other & Multi-Language Projects (11)
 
 | S.No | Repository | Description | Language | Stars | Forks |
 |------|------------|-------------|----------|-------|-------|
@@ -134,14 +135,13 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 | 2 | [Dot-Files](https://github.com/sandeepkv93/Dot-Files) | .vimrc  .bashrc  .tmux.conf files! | Vim Script | 1 | 0 |
 | 3 | [git-tricks](https://github.com/sandeepkv93/git-tricks) |  | N/A | 1 | 0 |
 | 4 | [CSE-508-Network-Security-Stonybrook-University](https://github.com/sandeepkv93/CSE-508-Network-Security-Stonybrook-University) | Homework Assignments for the course CSE508 Network Security Fall 2017 in Stony Brook University u... | C | 1 | 1 |
-| 5 | [sandeepkv93.github.io](https://github.com/sandeepkv93/sandeepkv93.github.io) | Portfolio Website | HTML | 0 | 0 |
-| 6 | [CowsNBulls](https://github.com/sandeepkv93/CowsNBulls) | A modern Android implementation of the classic Bulls & Cows number guessing game, built with Jetp... | Kotlin | 0 | 0 |
-| 7 | [k8s-blue-green-webapp](https://github.com/sandeepkv93/k8s-blue-green-webapp) | A comprehensive implementation of blue-green deployment strategy using Kubernetes Services, Label... | Shell | 0 | 0 |
-| 8 | [skypeek](https://github.com/sandeepkv93/skypeek) | SkyPeek is a modern Android weather application that delivers real-time weather information throu... | Kotlin | 0 | 0 |
-| 9 | [covid19-data-analysis](https://github.com/sandeepkv93/covid19-data-analysis) |  | Jupyter Notebook | 0 | 0 |
-| 10 | [being-developer](https://github.com/sandeepkv93/being-developer) | A hub for software development and computer science, featuring experiments, detailed tutorials, a... | N/A | 0 | 0 |
-| 11 | [learn-containers](https://github.com/sandeepkv93/learn-containers) |  | N/A | 0 | 0 |
-| 12 | [CSE-519-Data-Science-Fundamentals](https://github.com/sandeepkv93/CSE-519-Data-Science-Fundamentals) |  | Jupyter Notebook | 0 | 0 |
+| 5 | [CowsNBulls](https://github.com/sandeepkv93/CowsNBulls) | A modern Android implementation of the classic Bulls & Cows number guessing game, built with Jetp... | Kotlin | 0 | 0 |
+| 6 | [k8s-blue-green-webapp](https://github.com/sandeepkv93/k8s-blue-green-webapp) | A comprehensive implementation of blue-green deployment strategy using Kubernetes Services, Label... | Shell | 0 | 0 |
+| 7 | [skypeek](https://github.com/sandeepkv93/skypeek) | SkyPeek is a modern Android weather application that delivers real-time weather information throu... | Kotlin | 0 | 0 |
+| 8 | [covid19-data-analysis](https://github.com/sandeepkv93/covid19-data-analysis) |  | Jupyter Notebook | 0 | 0 |
+| 9 | [being-developer](https://github.com/sandeepkv93/being-developer) | A hub for software development and computer science, featuring experiments, detailed tutorials, a... | N/A | 0 | 0 |
+| 10 | [learn-containers](https://github.com/sandeepkv93/learn-containers) |  | N/A | 0 | 0 |
+| 11 | [CSE-519-Data-Science-Fundamentals](https://github.com/sandeepkv93/CSE-519-Data-Science-Fundamentals) |  | Jupyter Notebook | 0 | 0 |
 
 ---
 
@@ -226,7 +226,7 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 | S.No | Repository | Description | Language | Stars | Forks |
 |------|------------|-------------|----------|-------|-------|
 | 1 | [SBUnix](https://github.com/sandeepkv93/SBUnix) | CSE 506: A custom OS kernel built from scratch. Features multi-level paging, preemptive schedulin... | C | 2 | 0 |
-| 2 | [sandeepkv93.github.io](https://github.com/sandeepkv93/sandeepkv93.github.io) | Portfolio Website | HTML | 0 | 0 |
+| 2 | [sandeepkv93.github.io](https://github.com/sandeepkv93/sandeepkv93.github.io) | Portfolio Website | JavaScript | 0 | 0 |
 | 3 | [workout-audio-coach](https://github.com/sandeepkv93/workout-audio-coach) | A Python script that generates an audio file to guide workouts by counting sets and reps with cus... | Python | 0 | 0 |
 | 4 | [googlysync](https://github.com/sandeepkv93/googlysync) | Pop!_OS 24 desktop client for Google Drive: Go sync daemon + GTK4 UI + FUSE streaming, built with... | Go | 0 | 0 |
 | 5 | [CowsNBulls](https://github.com/sandeepkv93/CowsNBulls) | A modern Android implementation of the classic Bulls & Cows number guessing game, built with Jetp... | Kotlin | 0 | 0 |
@@ -297,4 +297,4 @@ This catalog is updated automatically every day via GitHub Actions:
 - Updates `index.db` and exports `data/repos.json` for the interactive GitHub Pages catalog
 - Regenerates `README.md` with current statistics
 
-*Last automated update: 2026-11-23 04:57:09 UTC*
+*Last automated update: 2026-11-23 16:55:47 UTC*
