@@ -81,9 +81,9 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 
 | S.No | Repository | Description | Stars | Forks |
 |------|------------|-------------|-------|-------|
-| 1 | [sandeepkv93](https://github.com/sandeepkv93/sandeepkv93) | Config files for my GitHub profile. | 0 | 0 |
-| 2 | [workout-audio-coach](https://github.com/sandeepkv93/workout-audio-coach) | A Python script that generates an audio file to guide workouts by counting sets and reps with cus... | 0 | 0 |
-| 3 | [repo-index](https://github.com/sandeepkv93/repo-index) | A comprehensive index of all my GitHub repositories, categorized by programming language and topic | 0 | 0 |
+| 1 | [repo-index](https://github.com/sandeepkv93/repo-index) | A comprehensive index of all my GitHub repositories, categorized by programming language and topic | 0 | 0 |
+| 2 | [sandeepkv93](https://github.com/sandeepkv93/sandeepkv93) | Config files for my GitHub profile. | 0 | 0 |
+| 3 | [workout-audio-coach](https://github.com/sandeepkv93/workout-audio-coach) | A Python script that generates an audio file to guide workouts by counting sets and reps with cus... | 0 | 0 |
 | 4 | [lps](https://github.com/sandeepkv93/lps) |  | 0 | 0 |
 | 5 | [text2podcast](https://github.com/sandeepkv93/text2podcast) | Convert text scripts to multi-speaker podcasts using AI-powered text-to-speech | 0 | 0 |
 | 6 | [otelviz](https://github.com/sandeepkv93/otelviz) | A modern, single-page Streamlit application for testing and visualizing OpenTelemetry Collector c... | 0 | 0 |
@@ -297,4 +297,4 @@ This catalog is updated automatically every day via GitHub Actions:
 - Updates `index.db` and exports `data/repos.json` for the interactive GitHub Pages catalog
 - Regenerates `README.md` with current statistics
 
-*Last automated update: 2026-11-23 04:55:14 UTC*
+*Last automated update: 2026-11-23 04:57:09 UTC*
