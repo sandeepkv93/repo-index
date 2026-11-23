@@ -1,442 +1,313 @@
 #!/usr/bin/env python3
 """
-README Generator
+README & Web Catalog Data Generator
 
-This script generates a comprehensive README.md file from the SQLite database
-containing repository information.
+Generates a clean Markdown README.md (with valid blank lines before tables)
+and exports data/repos.json for the interactive GitHub Pages web catalog.
 """
 
+import json
+import os
 import sqlite3
 import sys
-from datetime import datetime
-from typing import List, Dict, Any, Tuple
-import os
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Dict, List
+
+LANG_COLORS = {
+    "Go": "#00ADD8",
+    "Python": "#3572A5",
+    "Java": "#B07219",
+    "TypeScript": "#3178C6",
+    "JavaScript": "#F1E05A",
+    "C": "#6E7681",
+    "C#": "#178600",
+    "C++": "#F34B7D",
+    "Kotlin": "#A97BFF",
+    "Shell": "#89E051",
+    "HTML": "#E34C26",
+    "CSS": "#563D7C",
+    "Vim Script": "#199F4B",
+    "Dockerfile": "#384D54",
+    "Other": "#64748B",
+}
+
+
+def clean_text(text: str) -> str:
+    return (text or "").replace("\u2014", " - ").replace("\u2013", "-").strip()
+
+
+def classify_repo(repo: Dict[str, Any]) -> str:
+    topics = (repo.get("topics") or "").lower()
+    description = (repo.get("description") or "").lower()
+    name = (repo.get("name") or "").lower()
+    language = (repo.get("primary_language") or "").lower()
+    blob = f"{name} {description} {topics}"
+
+    if any(k in blob for k in ["kubernetes", "k8s", "docker", "opentelemetry", "otel", "prometheus", "grafana", "observability", "monitoring", "podbeacon", "otelviz", "logstream", "telemetry"]):
+        return "Cloud & Observability"
+    if any(k in blob for k in ["raft", "consensus", "saga", "distributed", "retry", "scheduler", "cron", "load", "lps", "balancer", "rabbitmq", "queue", "pubsub", "concurrency", "caching"]):
+        return "Distributed Systems"
+    if any(k in blob for k in ["security", "auth", "oauth", "oidc", "jwt", "encryption", "ssl", "tls"]):
+        return "Security & Auth"
+    if any(k in blob for k in ["api", "backend", "server", "microservice", "grpc", "connectrpc", "springboot", "spring-boot", "express", "starter"]):
+        return "Backend & APIs"
+    if any(k in blob for k in ["react", "frontend", "web-app", "visualizer", "demo", "portfolio", "github.io", "ui", "html", "css", "mermaid"]):
+        return "Frontend & Demos"
+    if language in {"kotlin", "c"} or any(k in blob for k in ["android", "mobile", "kotlin", "kernel", "sbunix", "fuse", "gtk4", "linux", "googlysync"]):
+        return "Systems & Desktop/Mobile"
+    if any(k in blob for k in ["data", "analysis", "analytics", "database", "sql", "duckdb", "ai", "ml", "tensorflow", "audio", "workout"]):
+        return "Data & AI"
+    if any(k in blob for k in ["learn", "tutorial", "example", "study", "practice", "notes", "guide", "tricks", "dotfiles", "config", "leetcode", "interview", "algorithms"]):
+        return "Learning & Utilities"
+    return "Other Projects"
+
 
 class ReadmeGenerator:
-    def __init__(self, db_path: str = "index.db", output_path: str = "README.md"):
-        """Initialize the README generator."""
+    def __init__(self, db_path: str = "index.db", output_path: str = "README.md", json_path: str = "data/repos.json"):
         self.db_path = db_path
         self.output_path = output_path
-        self.conn = None
-        
+        self.json_path = json_path
+
         if not os.path.exists(db_path):
-            print(f"❌ Database file {db_path} not found!")
+            print(f"Database file {db_path} not found!")
             sys.exit(1)
-        
+
         self.conn = sqlite3.connect(db_path)
-        self.conn.row_factory = sqlite3.Row  # Enable column access by name
-    
-    def get_repository_stats(self) -> Dict[str, Any]:
-        """Get overall repository statistics."""
+        self.conn.row_factory = sqlite3.Row
+
+    def get_all_public_repos(self) -> List[Dict[str, Any]]:
         cursor = self.conn.cursor()
-        
-        # Total repositories
-        cursor.execute('SELECT COUNT(*) FROM repositories WHERE is_fork = 0')
-        total_repos = cursor.fetchone()[0]
-        
-        # Total stars
-        cursor.execute('SELECT SUM(star_count) FROM repositories WHERE is_fork = 0')
-        total_stars = cursor.fetchone()[0] or 0
-        
-        # Total forks
-        cursor.execute('SELECT SUM(fork_count) FROM repositories WHERE is_fork = 0')
-        total_forks = cursor.fetchone()[0] or 0
-        
-        return {
-            'total_repos': total_repos,
-            'total_stars': total_stars,
-            'total_forks': total_forks
-        }
-    
-    def get_language_stats(self) -> List[Dict[str, Any]]:
-        """Get language statistics."""
-        cursor = self.conn.cursor()
-        cursor.execute('''
-            SELECT language, count, percentage 
-            FROM language_stats 
-            ORDER BY count DESC
-        ''')
-        
-        return [{'language': row[0], 'count': row[1], 'percentage': row[2]} 
-                for row in cursor.fetchall()]
-    
-    def get_repositories_by_language(self, language: str) -> List[Dict[str, Any]]:
-        """Get repositories for a specific programming language."""
-        cursor = self.conn.cursor()
-        cursor.execute('''
-            SELECT name, description, url, star_count, fork_count, topics
-            FROM repositories 
-            WHERE primary_language = ? AND is_fork = 0
-            ORDER BY star_count DESC, name ASC
-        ''', (language,))
-        
+        cols = {row[1] for row in cursor.execute("PRAGMA table_info(repositories)").fetchall()}
+        hp_select = "homepage_url" if "homepage_url" in cols else "'' AS homepage_url"
+        cursor.execute(
+            f"""
+            SELECT name, description, url, {hp_select}, primary_language,
+                   star_count, fork_count, topics, created_at, updated_at, pushed_at
+            FROM repositories
+            WHERE is_fork = 0 AND is_private = 0
+            ORDER BY star_count DESC, pushed_at DESC, name ASC
+            """
+        )
+
         repos = []
         for row in cursor.fetchall():
-            repos.append({
-                'name': row[0],
-                'description': row[1] or '',
-                'url': row[2],
-                'star_count': row[3],
-                'fork_count': row[4],
-                'topics': row[5]
-            })
-        
-        return repos
-    
-    def get_repositories_without_language(self) -> List[Dict[str, Any]]:
-        """Get repositories without a primary language."""
-        cursor = self.conn.cursor()
-        cursor.execute('''
-            SELECT name, description, url, star_count, fork_count, topics
-            FROM repositories 
-            WHERE (primary_language IS NULL OR primary_language = '') AND is_fork = 0
-            ORDER BY star_count DESC, name ASC
-        ''')
-        
-        repos = []
-        for row in cursor.fetchall():
-            repos.append({
-                'name': row[0],
-                'description': row[1] or '',
-                'url': row[2],
-                'star_count': row[3],
-                'fork_count': row[4],
-                'topics': row[5]
-            })
-        
-        return repos
-    
-    def get_top_starred_repos(self, limit: int = 10) -> List[Dict[str, Any]]:
-        """Get top starred repositories."""
-        cursor = self.conn.cursor()
-        cursor.execute('''
-            SELECT name, description, url, star_count, primary_language
-            FROM repositories 
-            WHERE is_fork = 0 AND star_count > 0
-            ORDER BY star_count DESC, name ASC
-            LIMIT ?
-        ''', (limit,))
-        
-        repos = []
-        for row in cursor.fetchall():
-            repos.append({
-                'name': row[0],
-                'description': row[1] or '',
-                'url': row[2],
-                'star_count': row[3],
-                'primary_language': row[4] or 'N/A'
-            })
-        
-        return repos
-    
-    def categorize_repositories(self) -> Dict[str, List[Dict[str, Any]]]:
-        """Categorize repositories by topic/type."""
-        categories = {
-            'Backend Development': [],
-            'Frontend Development': [],
-            'DevOps & Infrastructure': [],
-            'Mobile Development': [],
-            'AI & Machine Learning': [],
-            'Configuration & Utilities': [],
-            'Learning & Documentation': [],
-            'Data & Analytics': [],
-            'Security': [],
-            'Other Projects': []
-        }
-        
-        cursor = self.conn.cursor()
-        cursor.execute('''
-            SELECT name, description, url, star_count, fork_count, primary_language, topics
-            FROM repositories 
-            WHERE is_fork = 0
-            ORDER BY star_count DESC, name ASC
-        ''')
-        
-        for row in cursor.fetchall():
-            repo = {
-                'name': row[0],
-                'description': row[1] or '',
-                'url': row[2],
-                'star_count': row[3],
-                'fork_count': row[4],
-                'primary_language': row[5],
-                'topics': row[6] or ''
+            item = {
+                "name": row["name"],
+                "description": clean_text(row["description"] or ""),
+                "url": row["url"],
+                "homepage_url": (row["homepage_url"] or "").strip(),
+                "primary_language": row["primary_language"] or "",
+                "star_count": row["star_count"] or 0,
+                "fork_count": row["fork_count"] or 0,
+                "topics": row["topics"] or "",
+                "created_at": (row["created_at"] or "")[:10],
+                "updated_at": (row["updated_at"] or "")[:10],
+                "pushed_at": (row["pushed_at"] or "")[:10],
             }
-            
-            # Categorize based on topics, description, and name
-            topics = repo['topics'].lower()
-            description = repo['description'].lower()
-            name = repo['name'].lower()
-            language = (repo['primary_language'] or '').lower()
-            
-            categorized = False
-            
-            # Backend Development
-            if any(keyword in topics or keyword in description or keyword in name for keyword in 
-                   ['api', 'backend', 'server', 'microservice', 'grpc', 'oauth', 'jwt', 'springboot', 'spring-boot', 'golang', 'express']):
-                categories['Backend Development'].append(repo)
-                categorized = True
-            
-            # Frontend Development
-            elif any(keyword in topics or keyword in description or keyword in name for keyword in 
-                     ['react', 'frontend', 'web-app', 'javascript', 'typescript', 'ui', 'html', 'css']):
-                categories['Frontend Development'].append(repo)
-                categorized = True
-            
-            # DevOps & Infrastructure
-            elif any(keyword in topics or keyword in description or keyword in name for keyword in 
-                     ['kubernetes', 'k8s', 'docker', 'deployment', 'infrastructure', 'observability', 'monitoring', 'prometheus', 'grafana']):
-                categories['DevOps & Infrastructure'].append(repo)
-                categorized = True
-            
-            # Mobile Development
-            elif language == 'kotlin' or any(keyword in topics or keyword in description or keyword in name for keyword in 
-                                              ['android', 'mobile', 'kotlin', 'swift', 'ios']):
-                categories['Mobile Development'].append(repo)
-                categorized = True
-            
-            # AI & Machine Learning
-            elif any(keyword in topics or keyword in description or keyword in name for keyword in 
-                     ['ai', 'ml', 'machine-learning', 'chatbot', 'nlp', 'tensorflow', 'pytorch', 'podcast', 'text-to-speech', 'metagpt']):
-                categories['AI & Machine Learning'].append(repo)
-                categorized = True
-            
-            # Configuration & Utilities
-            elif any(keyword in topics or keyword in description or keyword in name for keyword in 
-                     ['dotfiles', 'config', 'utility', 'scripts', 'automation', 'tools']):
-                categories['Configuration & Utilities'].append(repo)
-                categorized = True
-            
-            # Learning & Documentation
-            elif any(keyword in topics or keyword in description or keyword in name for keyword in 
-                     ['learn', 'tutorial', 'example', 'demo', 'study', 'practice', 'notes', 'documentation', 'concepts']):
-                categories['Learning & Documentation'].append(repo)
-                categorized = True
-            
-            # Data & Analytics
-            elif any(keyword in topics or keyword in description or keyword in name for keyword in 
-                     ['data', 'analysis', 'analytics', 'database', 'sql', 'covid', 'metrics']):
-                categories['Data & Analytics'].append(repo)
-                categorized = True
-            
-            # Security
-            elif any(keyword in topics or keyword in description or keyword in name for keyword in 
-                     ['security', 'auth', 'oauth', 'jwt', 'encryption', 'ssl', 'tls']):
-                categories['Security'].append(repo)
-                categorized = True
-            
-            # Default to Other Projects
-            if not categorized:
-                categories['Other Projects'].append(repo)
-        
-        # Remove empty categories
-        return {k: v for k, v in categories.items() if v}
-    
+            item["category"] = classify_repo(item)
+            repos.append(item)
+        return repos
+
+    def get_language_stats(self) -> List[Dict[str, Any]]:
+        cursor = self.conn.cursor()
+        cursor.execute(
+            """
+            SELECT language, count, percentage
+            FROM language_stats
+            ORDER BY count DESC, language ASC
+            """
+        )
+        return [
+            {
+                "language": row[0],
+                "count": row[1],
+                "percentage": round(float(row[2]), 1),
+                "color": LANG_COLORS.get(row[0], "#29B5E8"),
+            }
+            for row in cursor.fetchall()
+        ]
+
     def generate_table(self, repos: List[Dict[str, Any]], include_language: bool = False) -> str:
-        """Generate a markdown table for repositories."""
         if not repos:
-            return "_No repositories found._\n"
-        
-        # Table header
+            return "\n_No repositories found._\n\n"
+
         if include_language:
-            header = "| S.No | Repository | Description | Language | Stars | Forks |\n"
+            header = "\n| S.No | Repository | Description | Language | Stars | Forks |\n"
             separator = "|------|------------|-------------|----------|-------|-------|\n"
         else:
-            header = "| S.No | Repository | Description | Stars | Forks |\n"
+            header = "\n| S.No | Repository | Description | Stars | Forks |\n"
             separator = "|------|------------|-------------|-------|-------|\n"
-        
-        table = header + separator
-        
-        # Table rows
+
+        rows = [header, separator]
         for i, repo in enumerate(repos, 1):
             name_link = f"[{repo['name']}]({repo['url']})"
-            description = repo['description'][:100] + "..." if len(repo['description']) > 100 else repo['description']
-            description = description.replace('|', '\\|') if description else ''
-            
+            desc = repo["description"]
+            if len(desc) > 100:
+                desc = desc[:97].rstrip() + "..."
+            desc = desc.replace("|", "\\|")
             if include_language:
-                language = repo.get('primary_language') or 'N/A'
-                row = f"| {i} | {name_link} | {description} | {language} | {repo['star_count']} | {repo['fork_count']} |\n"
+                lang = repo["primary_language"] or "N/A"
+                rows.append(f"| {i} | {name_link} | {desc} | {lang} | {repo['star_count']} | {repo['fork_count']} |\n")
             else:
-                row = f"| {i} | {name_link} | {description} | {repo['star_count']} | {repo['fork_count']} |\n"
-            
-            table += row
-        
-        return table + "\n"
-    
+                rows.append(f"| {i} | {name_link} | {desc} | {repo['star_count']} | {repo['fork_count']} |\n")
+
+        rows.append("\n")
+        return "".join(rows)
+
+    def export_web_json(self, repos: List[Dict[str, Any]], language_stats: List[Dict[str, Any]]):
+        out_path = Path(self.json_path)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        now_utc = datetime.now(timezone.utc)
+
+        total_stars = sum(r["star_count"] for r in repos)
+        total_forks = sum(r["fork_count"] for r in repos)
+        live_demos = sum(1 for r in repos if r["homepage_url"])
+
+        categories_count: Dict[str, int] = {}
+        for r in repos:
+            cat = r["category"]
+            categories_count[cat] = categories_count.get(cat, 0) + 1
+
+        payload = {
+            "updated_date": now_utc.strftime("%Y-%m-%d"),
+            "updated_utc": now_utc.strftime("%Y-%m-%d %H:%M UTC"),
+            "stats": {
+                "total_repos": len(repos),
+                "total_stars": total_stars,
+                "total_forks": total_forks,
+                "total_languages": len(language_stats),
+                "live_demos": live_demos,
+            },
+            "languages": language_stats,
+            "categories": [
+                {"name": name, "count": count}
+                for name, count in sorted(categories_count.items(), key=lambda x: (-x[1], x[0]))
+            ],
+            "repos": [
+                {
+                    "name": r["name"],
+                    "description": r["description"],
+                    "url": r["url"],
+                    "demo": r["homepage_url"],
+                    "language": r["primary_language"] or "Other",
+                    "language_color": LANG_COLORS.get(r["primary_language"] or "Other", "#29B5E8"),
+                    "stars": r["star_count"],
+                    "forks": r["fork_count"],
+                    "topics": [t.strip() for t in r["topics"].split(",") if t.strip()],
+                    "category": r["category"],
+                    "pushed_at": r["pushed_at"],
+                    "created_at": r["created_at"],
+                }
+                for r in repos
+            ],
+        }
+
+        out_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+        print(f"Exported web catalog data to {self.json_path} ({len(repos)} repos)")
+
     def generate_readme(self):
-        """Generate the complete README.md file."""
-        print("📝 Generating README.md...")
-        
-        # Get statistics
-        stats = self.get_repository_stats()
+        print("Generating README.md and data/repos.json...")
+        repos = self.get_all_public_repos()
         language_stats = self.get_language_stats()
-        top_starred = self.get_top_starred_repos(10)
-        categories = self.categorize_repositories()
-        
-        # Start building README content
-        content = []
-        
-        # Header
-        content.append("# 📚 Repository Index\n")
-        content.append("A comprehensive index of all my GitHub repositories, categorized by programming language and topic.\n")
-        content.append(f"**Total Repositories:** {stats['total_repos']}  ")
-        content.append(f"**Total Stars:** {stats['total_stars']}  ")
-        content.append(f"**Last Updated:** {datetime.now().strftime('%B %d, %Y')}\n")
-        content.append("---\n")
-        
-        # Repository Statistics
+        self.export_web_json(repos, language_stats)
+
+        total_stars = sum(r["star_count"] for r in repos)
+        now_utc = datetime.now(timezone.utc)
+
+        content: List[str] = []
+        content.append("# Repository Index\n\n")
+        content.append(
+            "A comprehensive, auto-synced catalog of my public GitHub repositories. "
+            "Browse the interactive web catalog at [sandeepkv93.github.io/repo-index](https://sandeepkv93.github.io/repo-index/) "
+            "or return to [sandeepkv93.github.io](https://sandeepkv93.github.io/).\n\n"
+        )
+        content.append(
+            f"**Total Public Repositories:** {len(repos)} | "
+            f"**Total Stars:** {total_stars} | "
+            f"**Last Updated:** {now_utc.strftime('%B %d, %Y')}\n\n"
+        )
+        content.append("---\n\n")
+
         if language_stats:
-            content.append("## 📊 Repository Statistics\n")
+            content.append("## Repository Statistics\n\n")
             content.append("| Language | Count | Percentage |\n")
             content.append("|----------|-------|------------|\n")
-            
-            for lang_stat in language_stats[:10]:  # Top 10 languages
-                percentage = f"{lang_stat['percentage']:.1f}%"
-                content.append(f"| {lang_stat['language']} | {lang_stat['count']} | {percentage} |\n")
-            
-            content.append("\n---\n")
-        
-        # Language-based sections
-        content.append("## 🔤 Repositories by Programming Language\n")
-        
-        # Get major languages (more than 2 repos)
-        major_languages = [ls for ls in language_stats if ls['count'] > 2]
-        
+            for lang_stat in language_stats[:10]:
+                content.append(
+                    f"| {lang_stat['language']} | {lang_stat['count']} | {lang_stat['percentage']:.1f}% |\n"
+                )
+            content.append("\n---\n\n")
+
+        content.append("## Repositories by Programming Language\n\n")
+        major_languages = [ls for ls in language_stats if ls["count"] > 2]
         for lang_stat in major_languages:
-            language = lang_stat['language']
-            repos = self.get_repositories_by_language(language)
-            
-            if repos:
-                # Language emoji mapping
-                emoji_map = {
-                    'Go': '🐹', 'Java': '☕', 'JavaScript': '🟨', 'Python': '🐍',
-                    'C#': '🔷', 'TypeScript': '📘', 'Kotlin': '📱', 'Swift': '🍎',
-                    'Rust': '🦀', 'C++': '⚡', 'C': '🔧', 'Ruby': '💎',
-                    'PHP': '🐘', 'Dart': '🎯', 'Shell': '🐚', 'HTML': '🌐',
-                    'CSS': '🎨', 'Vim Script': '✏️', 'Dockerfile': '🐳'
-                }
-                
-                emoji = emoji_map.get(language, '📄')
-                content.append(f"### {emoji} {language} Projects\n")
-                content.append(self.generate_table(repos))
-        
-        # Projects without language
-        no_lang_repos = self.get_repositories_without_language()
-        if no_lang_repos:
-            content.append("### 📄 Other Projects\n")
-            content.append(self.generate_table(no_lang_repos))
-        
-        content.append("---\n")
-        
-        # Categorized sections
-        content.append("## 🎯 Repositories by Category\n")
-        
-        category_emojis = {
-            'Backend Development': '⚙️',
-            'Frontend Development': '🎨',
-            'DevOps & Infrastructure': '🚀',
-            'Mobile Development': '📱',
-            'AI & Machine Learning': '🤖',
-            'Configuration & Utilities': '🔧',
-            'Learning & Documentation': '📚',
-            'Data & Analytics': '📊',
-            'Security': '🔐',
-            'Other Projects': '📦'
-        }
-        
-        for category, repos in categories.items():
-            if repos:
-                emoji = category_emojis.get(category, '📦')
-                content.append(f"### {emoji} {category}\n")
-                content.append(self.generate_table(repos, include_language=True))
-        
-        # Top starred repositories
+            lang = lang_stat["language"]
+            lang_repos = [r for r in repos if r["primary_language"] == lang]
+            if lang_repos:
+                content.append(f"### {lang} Projects ({len(lang_repos)})\n")
+                content.append(self.generate_table(lang_repos))
+
+        other_lang_names = {ls["language"] for ls in major_languages}
+        other_repos = [r for r in repos if r["primary_language"] not in other_lang_names]
+        if other_repos:
+            content.append(f"### Other & Multi-Language Projects ({len(other_repos)})\n")
+            content.append(self.generate_table(other_repos, include_language=True))
+
+        content.append("---\n\n")
+        content.append("## Repositories by Category\n\n")
+        by_cat: Dict[str, List[Dict[str, Any]]] = {}
+        for r in repos:
+            by_cat.setdefault(r["category"], []).append(r)
+
+        for category, cat_repos in sorted(by_cat.items(), key=lambda x: (-len(x[1]), x[0])):
+            content.append(f"### {category} ({len(cat_repos)})\n")
+            content.append(self.generate_table(cat_repos, include_language=True))
+
+        top_starred = [r for r in repos if r["star_count"] > 0][:10]
         if top_starred:
-            content.append("---\n")
-            content.append("## 🏆 Top Starred Repositories\n")
+            content.append("---\n\n")
+            content.append("## Top Starred Repositories\n\n")
             content.append("| Repository | Stars | Language | Description |\n")
             content.append("|------------|-------|----------|-------------|\n")
-            
             for repo in top_starred:
                 name_link = f"[{repo['name']}]({repo['url']})"
-                description = repo['description'][:80] + "..." if len(repo['description']) > 80 else repo['description']
-                description = description.replace('|', '\\|') if description else ''
-                content.append(f"| {name_link} | {repo['star_count']} | {repo['primary_language']} | {description} |\n")
-            
+                desc = repo["description"]
+                if len(desc) > 85:
+                    desc = desc[:82].rstrip() + "..."
+                desc = desc.replace("|", "\\|")
+                lang = repo["primary_language"] or "N/A"
+                content.append(f"| {name_link} | {repo['star_count']} | {lang} | {desc} |\n")
             content.append("\n")
-        
-        # Key Technologies section
-        content.append("---\n")
-        content.append("## 🛠️ Key Technologies & Topics\n")
-        
-        # Extract most common topics
-        cursor = self.conn.cursor()
-        cursor.execute('''
-            SELECT topics FROM repositories 
-            WHERE topics IS NOT NULL AND topics != '' AND is_fork = 0
-        ''')
-        
-        all_topics = {}
-        for row in cursor.fetchall():
-            topics = row[0].split(',')
-            for topic in topics:
-                topic = topic.strip()
-                if topic:
-                    all_topics[topic] = all_topics.get(topic, 0) + 1
-        
-        # Sort topics by frequency
-        sorted_topics = sorted(all_topics.items(), key=lambda x: x[1], reverse=True)
-        
-        if sorted_topics:
-            content.append("### Most Common Topics\n")
-            topic_list = []
-            for topic, count in sorted_topics[:20]:  # Top 20 topics
-                topic_list.append(f"`{topic}` ({count})")
-            
-            # Group topics in lines of 4
-            for i in range(0, len(topic_list), 4):
-                line_topics = topic_list[i:i+4]
-                content.append(" • ".join(line_topics) + "\n")
-            
-            content.append("\n")
-        
-        # Footer
-        content.append("---\n")
-        content.append("## 🔄 Automation\n")
-        content.append("This repository index is automatically updated daily using GitHub Actions. ")
-        content.append("The automation:\n")
-        content.append("- Fetches latest repository data using GitHub CLI\n")
-        content.append("- Updates a SQLite database with repository information\n")
-        content.append("- Regenerates this README.md with current statistics\n")
-        content.append("- Commits changes if any updates are detected\n\n")
-        content.append("*Last automated update: " + datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC') + "*\n")
-        
-        # Write to file
-        readme_content = "".join(content)
-        
-        with open(self.output_path, 'w', encoding='utf-8') as f:
-            f.write(readme_content)
-        
-        print(f"✅ README.md generated successfully at {self.output_path}")
-    
+
+        content.append("---\n\n")
+        content.append("## Automation\n\n")
+        content.append("This catalog is updated automatically every day via GitHub Actions:\n\n")
+        content.append("- Fetches public non-fork repositories via GitHub CLI and prunes deleted repositories\n")
+        content.append("- Updates `index.db` and exports `data/repos.json` for the interactive GitHub Pages catalog\n")
+        content.append("- Regenerates `README.md` with current statistics\n\n")
+        content.append(f"*Last automated update: {now_utc.strftime('%Y-%m-%d %H:%M:%S UTC')}*\n")
+
+        Path(self.output_path).write_text("".join(content), encoding="utf-8")
+        print(f"README.md generated successfully at {self.output_path}")
+
     def close(self):
-        """Close database connection."""
         if self.conn:
             self.conn.close()
 
+
 def main():
-    """Main function."""
     try:
         generator = ReadmeGenerator()
         generator.generate_readme()
         generator.close()
-        
     except KeyboardInterrupt:
-        print("\n❌ Operation cancelled by user")
+        print("\nOperation cancelled by user")
         sys.exit(1)
     except Exception as e:
-        print(f"❌ Unexpected error: {e}")
+        print(f"Unexpected error: {e}")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
