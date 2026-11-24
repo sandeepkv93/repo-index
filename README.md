@@ -2,7 +2,7 @@
 
 A comprehensive, auto-synced catalog of my public GitHub repositories. Browse the interactive web catalog at [sandeepkv93.github.io/repo-index](https://sandeepkv93.github.io/repo-index/) or return to [sandeepkv93.github.io](https://sandeepkv93.github.io/).
 
-**Total Public Repositories:** 83 | **Total Stars:** 14 | **Last Updated:** November 23, 2026
+**Total Public Repositories:** 82 | **Total Stars:** 14 | **Last Updated:** November 24, 2026
 
 ---
 
@@ -10,16 +10,16 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 
 | Language | Count | Percentage |
 |----------|-------|------------|
-| Go | 25 | 31.2% |
-| Java | 17 | 21.2% |
-| Python | 14 | 17.5% |
-| JavaScript | 6 | 7.5% |
-| TypeScript | 6 | 7.5% |
-| C# | 4 | 5.0% |
+| Go | 25 | 31.6% |
+| Java | 17 | 21.5% |
+| Python | 14 | 17.7% |
+| JavaScript | 6 | 7.6% |
+| TypeScript | 5 | 6.3% |
+| C# | 4 | 5.1% |
 | C | 2 | 2.5% |
 | Jupyter Notebook | 2 | 2.5% |
 | Kotlin | 2 | 2.5% |
-| Shell | 1 | 1.2% |
+| Shell | 1 | 1.3% |
 
 ---
 
@@ -81,8 +81,8 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 
 | S.No | Repository | Description | Stars | Forks |
 |------|------------|-------------|-------|-------|
-| 1 | [repo-index](https://github.com/sandeepkv93/repo-index) | A comprehensive index of all my GitHub repositories, categorized by programming language and topic | 0 | 0 |
-| 2 | [sandeepkv93](https://github.com/sandeepkv93/sandeepkv93) | Config files for my GitHub profile. | 0 | 0 |
+| 1 | [sandeepkv93](https://github.com/sandeepkv93/sandeepkv93) | Config files for my GitHub profile. | 0 | 0 |
+| 2 | [repo-index](https://github.com/sandeepkv93/repo-index) | A comprehensive index of all my GitHub repositories, categorized by programming language and topic | 0 | 0 |
 | 3 | [workout-audio-coach](https://github.com/sandeepkv93/workout-audio-coach) | A Python script that generates an audio file to guide workouts by counting sets and reps with cus... | 0 | 0 |
 | 4 | [lps](https://github.com/sandeepkv93/lps) |  | 0 | 0 |
 | 5 | [text2podcast](https://github.com/sandeepkv93/text2podcast) | Convert text scripts to multi-speaker podcasts using AI-powered text-to-speech | 0 | 0 |
@@ -107,7 +107,7 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 | 5 | [react-todolist](https://github.com/sandeepkv93/react-todolist) | A React.js to-do list web application with user authentication via social login, synchronized wit... | 0 | 0 |
 | 6 | [fhiranalytics](https://github.com/sandeepkv93/fhiranalytics) | Analytics on FHIR Data | 0 | 1 |
 
-### TypeScript Projects (6)
+### TypeScript Projects (5)
 
 | S.No | Repository | Description | Stars | Forks |
 |------|------------|-------------|-------|-------|
@@ -115,8 +115,7 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 | 2 | [retry-budget-validator](https://github.com/sandeepkv93/retry-budget-validator) | A production-quality TypeScript library and CLI to statically analyze declarative retry topologie... | 0 | 0 |
 | 3 | [credit-card-validator](https://github.com/sandeepkv93/credit-card-validator) |  | 0 | 0 |
 | 4 | [mermaid-to-png](https://github.com/sandeepkv93/mermaid-to-png) |  | 0 | 0 |
-| 5 | [google-keep-clone](https://github.com/sandeepkv93/google-keep-clone) | A production-ready Google Keep clone built with React frontend and Go backend, featuring real-tim... | 0 | 0 |
-| 6 | [document-analysis](https://github.com/sandeepkv93/document-analysis) |  | 0 | 0 |
+| 5 | [document-analysis](https://github.com/sandeepkv93/document-analysis) |  | 0 | 0 |
 
 ### C# Projects (4)
 
@@ -206,21 +205,6 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 | 9 | [sudoku-solver-comparitive-analysis](https://github.com/sandeepkv93/sudoku-solver-comparitive-analysis) | A comparative study of different algorithms like depth-first-search with backtracking and AC3, ge... | Python | 0 | 0 |
 | 10 | [fhiranalytics](https://github.com/sandeepkv93/fhiranalytics) | Analytics on FHIR Data | JavaScript | 0 | 1 |
 
-### Security & Auth (10)
-
-| S.No | Repository | Description | Language | Stars | Forks |
-|------|------------|-------------|----------|-------|-------|
-| 1 | [oidc-flow-demo](https://github.com/sandeepkv93/oidc-flow-demo) | Interactive visual guide to the OpenID Connect (OIDC) authentication flow. Explore and understand... | JavaScript | 1 | 0 |
-| 2 | [CSE-508-Network-Security-Stonybrook-University](https://github.com/sandeepkv93/CSE-508-Network-Security-Stonybrook-University) | Homework Assignments for the course CSE508 Network Security Fall 2017 in Stony Brook University u... | C | 1 | 1 |
-| 3 | [oauth-from-scratch-in-go](https://github.com/sandeepkv93/oauth-from-scratch-in-go) | A comprehensive OAuth 2.0 authorization server and OpenID Connect provider built from scratch in... | Go | 0 | 0 |
-| 4 | [google-auth-app](https://github.com/sandeepkv93/google-auth-app) | A complete, production-ready demonstration of Google OAuth 2.0 authentication with a React fronte... | Go | 0 | 0 |
-| 5 | [google-keep-clone](https://github.com/sandeepkv93/google-keep-clone) | A production-ready Google Keep clone built with React frontend and Go backend, featuring real-tim... | TypeScript | 0 | 0 |
-| 6 | [user-management-springboot](https://github.com/sandeepkv93/user-management-springboot) | A Spring Boot application for user management with OAuth2 social login and AWS S3 integration for... | Java | 0 | 0 |
-| 7 | [springboot-starter-app](https://github.com/sandeepkv93/springboot-starter-app) | A robust, production-ready Spring Boot starter template featuring comprehensive user authenticati... | Java | 0 | 0 |
-| 8 | [go-jwt-example](https://github.com/sandeepkv93/go-jwt-example) | Example of JWT for authentication and authorization in a Go (golang) web application. | Go | 0 | 0 |
-| 9 | [node-user-auth-starterkit](https://github.com/sandeepkv93/node-user-auth-starterkit) | A complete toolkit for developers aiming to swiftly implement a user authentication system using... | JavaScript | 0 | 0 |
-| 10 | [react-todolist](https://github.com/sandeepkv93/react-todolist) | A React.js to-do list web application with user authentication via social login, synchronized wit... | JavaScript | 0 | 0 |
-
 ### Frontend & Demos (9)
 
 | S.No | Repository | Description | Language | Stars | Forks |
@@ -248,6 +232,20 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 | 7 | [ds-and-algos-csharp](https://github.com/sandeepkv93/ds-and-algos-csharp) |  | C# | 0 | 0 |
 | 8 | [java-multi-threading](https://github.com/sandeepkv93/java-multi-threading) | Multithreading in Java | Java | 0 | 0 |
 | 9 | [MultiQC](https://github.com/sandeepkv93/MultiQC) | A tool to aggregate bioinformatics results across many samples into a single report with interact... | Python | 0 | 0 |
+
+### Security & Auth (9)
+
+| S.No | Repository | Description | Language | Stars | Forks |
+|------|------------|-------------|----------|-------|-------|
+| 1 | [oidc-flow-demo](https://github.com/sandeepkv93/oidc-flow-demo) | Interactive visual guide to the OpenID Connect (OIDC) authentication flow. Explore and understand... | JavaScript | 1 | 0 |
+| 2 | [CSE-508-Network-Security-Stonybrook-University](https://github.com/sandeepkv93/CSE-508-Network-Security-Stonybrook-University) | Homework Assignments for the course CSE508 Network Security Fall 2017 in Stony Brook University u... | C | 1 | 1 |
+| 3 | [oauth-from-scratch-in-go](https://github.com/sandeepkv93/oauth-from-scratch-in-go) | A comprehensive OAuth 2.0 authorization server and OpenID Connect provider built from scratch in... | Go | 0 | 0 |
+| 4 | [google-auth-app](https://github.com/sandeepkv93/google-auth-app) | A complete, production-ready demonstration of Google OAuth 2.0 authentication with a React fronte... | Go | 0 | 0 |
+| 5 | [user-management-springboot](https://github.com/sandeepkv93/user-management-springboot) | A Spring Boot application for user management with OAuth2 social login and AWS S3 integration for... | Java | 0 | 0 |
+| 6 | [springboot-starter-app](https://github.com/sandeepkv93/springboot-starter-app) | A robust, production-ready Spring Boot starter template featuring comprehensive user authenticati... | Java | 0 | 0 |
+| 7 | [go-jwt-example](https://github.com/sandeepkv93/go-jwt-example) | Example of JWT for authentication and authorization in a Go (golang) web application. | Go | 0 | 0 |
+| 8 | [node-user-auth-starterkit](https://github.com/sandeepkv93/node-user-auth-starterkit) | A complete toolkit for developers aiming to swiftly implement a user authentication system using... | JavaScript | 0 | 0 |
+| 9 | [react-todolist](https://github.com/sandeepkv93/react-todolist) | A React.js to-do list web application with user authentication via social login, synchronized wit... | JavaScript | 0 | 0 |
 
 ### Backend & APIs (7)
 
@@ -297,4 +295,4 @@ This catalog is updated automatically every day via GitHub Actions:
 - Updates `index.db` and exports `data/repos.json` for the interactive GitHub Pages catalog
 - Regenerates `README.md` with current statistics
 
-*Last automated update: 2026-11-23 16:55:47 UTC*
+*Last automated update: 2026-11-24 16:45:06 UTC*

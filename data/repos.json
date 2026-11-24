@@ -1,8 +1,8 @@
 {
-  "updated_date": "2026-11-23",
-  "updated_utc": "2026-11-23 16:55 UTC",
+  "updated_date": "2026-11-24",
+  "updated_utc": "2026-11-24 16:45 UTC",
   "stats": {
-    "total_repos": 83,
+    "total_repos": 82,
     "total_stars": 14,
     "total_forks": 5,
     "total_languages": 11,
@@ -12,37 +12,37 @@
     {
       "language": "Go",
       "count": 25,
-      "percentage": 31.2,
+      "percentage": 31.6,
       "color": "#00ADD8"
     },
     {
       "language": "Java",
       "count": 17,
-      "percentage": 21.2,
+      "percentage": 21.5,
       "color": "#B07219"
     },
     {
       "language": "Python",
       "count": 14,
-      "percentage": 17.5,
+      "percentage": 17.7,
       "color": "#3572A5"
     },
     {
       "language": "JavaScript",
       "count": 6,
-      "percentage": 7.5,
+      "percentage": 7.6,
       "color": "#F1E05A"
     },
     {
       "language": "TypeScript",
-      "count": 6,
-      "percentage": 7.5,
+      "count": 5,
+      "percentage": 6.3,
       "color": "#3178C6"
     },
     {
       "language": "C#",
       "count": 4,
-      "percentage": 5.0,
+      "percentage": 5.1,
       "color": "#178600"
     },
     {
@@ -66,13 +66,13 @@
     {
       "language": "Shell",
       "count": 1,
-      "percentage": 1.2,
+      "percentage": 1.3,
       "color": "#89E051"
     },
     {
       "language": "Vim Script",
       "count": 1,
-      "percentage": 1.2,
+      "percentage": 1.3,
       "color": "#199F4B"
     }
   ],
@@ -90,15 +90,15 @@
       "count": 10
     },
     {
-      "name": "Security & Auth",
-      "count": 10
-    },
-    {
       "name": "Frontend & Demos",
       "count": 9
     },
     {
       "name": "Other Projects",
+      "count": 9
+    },
+    {
+      "name": "Security & Auth",
       "count": 9
     },
     {
@@ -329,20 +329,6 @@
       "created_at": "2025-12-26"
     },
     {
-      "name": "repo-index",
-      "description": "A comprehensive index of all my GitHub repositories, categorized by programming language and topic",
-      "url": "https://github.com/sandeepkv93/repo-index",
-      "demo": "",
-      "language": "Python",
-      "language_color": "#3572A5",
-      "stars": 0,
-      "forks": 0,
-      "topics": [],
-      "category": "Other Projects",
-      "pushed_at": "2026-11-23",
-      "created_at": "2025-07-20"
-    },
-    {
       "name": "sandeepkv93.github.io",
       "description": "Portfolio Website",
       "url": "https://github.com/sandeepkv93/sandeepkv93.github.io",
@@ -372,6 +358,20 @@
       "category": "Learning & Utilities",
       "pushed_at": "2026-11-23",
       "created_at": "2021-04-01"
+    },
+    {
+      "name": "repo-index",
+      "description": "A comprehensive index of all my GitHub repositories, categorized by programming language and topic",
+      "url": "https://github.com/sandeepkv93/repo-index",
+      "demo": "",
+      "language": "Python",
+      "language_color": "#3572A5",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "category": "Other Projects",
+      "pushed_at": "2026-11-23",
+      "created_at": "2025-07-20"
     },
     {
       "name": "workout-audio-coach",
@@ -728,20 +728,6 @@
       "category": "Security & Auth",
       "pushed_at": "2025-06-15",
       "created_at": "2025-06-15"
-    },
-    {
-      "name": "google-keep-clone",
-      "description": "A production-ready Google Keep clone built with React frontend and Go backend, featuring real-time synchronization, OAuth authentication, and modern UI/UX.",
-      "url": "https://github.com/sandeepkv93/google-keep-clone",
-      "demo": "",
-      "language": "TypeScript",
-      "language_color": "#3178C6",
-      "stars": 0,
-      "forks": 0,
-      "topics": [],
-      "category": "Security & Auth",
-      "pushed_at": "2025-06-09",
-      "created_at": "2025-06-08"
     },
     {
       "name": "otelviz",
