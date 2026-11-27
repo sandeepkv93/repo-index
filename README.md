@@ -2,7 +2,7 @@
 
 A comprehensive, auto-synced catalog of my public GitHub repositories. Browse the interactive web catalog at [sandeepkv93.github.io/repo-index](https://sandeepkv93.github.io/repo-index/) or return to [sandeepkv93.github.io](https://sandeepkv93.github.io/).
 
-**Total Public Repositories:** 82 | **Total Stars:** 14 | **Last Updated:** November 26, 2026
+**Total Public Repositories:** 82 | **Total Stars:** 14 | **Last Updated:** November 27, 2026
 
 ---
 
@@ -111,9 +111,9 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 
 | S.No | Repository | Description | Stars | Forks |
 |------|------------|-------------|-------|-------|
-| 1 | [distributed-systems-visualizer](https://github.com/sandeepkv93/distributed-systems-visualizer) | Interactive visual simulations for learning distributed systems, with step controls and in-page t... | 0 | 1 |
-| 2 | [retry-budget-validator](https://github.com/sandeepkv93/retry-budget-validator) | A production-quality TypeScript library and CLI to statically analyze declarative retry topologie... | 0 | 0 |
-| 3 | [credit-card-validator](https://github.com/sandeepkv93/credit-card-validator) |  | 0 | 0 |
+| 1 | [credit-card-validator](https://github.com/sandeepkv93/credit-card-validator) |  | 0 | 0 |
+| 2 | [distributed-systems-visualizer](https://github.com/sandeepkv93/distributed-systems-visualizer) | Interactive visual simulations for learning distributed systems, with step controls and in-page t... | 0 | 1 |
+| 3 | [retry-budget-validator](https://github.com/sandeepkv93/retry-budget-validator) | A production-quality TypeScript library and CLI to statically analyze declarative retry topologie... | 0 | 0 |
 | 4 | [mermaid-to-png](https://github.com/sandeepkv93/mermaid-to-png) |  | 0 | 0 |
 | 5 | [document-analysis](https://github.com/sandeepkv93/document-analysis) |  | 0 | 0 |
 
@@ -223,8 +223,8 @@ A comprehensive, auto-synced catalog of my public GitHub repositories. Browse th
 
 | S.No | Repository | Description | Language | Stars | Forks |
 |------|------------|-------------|----------|-------|-------|
-| 1 | [repo-index](https://github.com/sandeepkv93/repo-index) | A comprehensive index of all my GitHub repositories, categorized by programming language and topic | Python | 0 | 0 |
-| 2 | [credit-card-validator](https://github.com/sandeepkv93/credit-card-validator) |  | TypeScript | 0 | 0 |
+| 1 | [credit-card-validator](https://github.com/sandeepkv93/credit-card-validator) |  | TypeScript | 0 | 0 |
+| 2 | [repo-index](https://github.com/sandeepkv93/repo-index) | A comprehensive index of all my GitHub repositories, categorized by programming language and topic | Python | 0 | 0 |
 | 3 | [network-programming](https://github.com/sandeepkv93/network-programming) |  | Go | 0 | 0 |
 | 4 | [SpotVM-In-Azure-Using-C-Sharp](https://github.com/sandeepkv93/SpotVM-In-Azure-Using-C-Sharp) |  | C# | 0 | 0 |
 | 5 | [utility-scripts](https://github.com/sandeepkv93/utility-scripts) | Programs with various utilities | Python | 0 | 0 |
@@ -295,4 +295,4 @@ This catalog is updated automatically every day via GitHub Actions:
 - Updates `index.db` and exports `data/repos.json` for the interactive GitHub Pages catalog
 - Regenerates `README.md` with current statistics
 
-*Last automated update: 2026-11-26 16:04:43 UTC*
+*Last automated update: 2026-11-27 15:52:47 UTC*

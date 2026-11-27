@@ -1,6 +1,6 @@
 {
-  "updated_date": "2026-11-26",
-  "updated_utc": "2026-11-26 16:04 UTC",
+  "updated_date": "2026-11-27",
+  "updated_utc": "2026-11-27 15:52 UTC",
   "stats": {
     "total_repos": 82,
     "total_stars": 14,
@@ -315,6 +315,34 @@
       "created_at": "2017-12-09"
     },
     {
+      "name": "credit-card-validator",
+      "description": "",
+      "url": "https://github.com/sandeepkv93/credit-card-validator",
+      "demo": "https://sandeepkv93.github.io/credit-card-validator/",
+      "language": "TypeScript",
+      "language_color": "#3178C6",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "category": "Other Projects",
+      "pushed_at": "2026-11-27",
+      "created_at": "2026-10-03"
+    },
+    {
+      "name": "distributed-systems-visualizer",
+      "description": "Interactive visual simulations for learning distributed systems, with step controls and in-page theory articles.",
+      "url": "https://github.com/sandeepkv93/distributed-systems-visualizer",
+      "demo": "https://sandeepkv93.github.io/distributed-systems-visualizer/",
+      "language": "TypeScript",
+      "language_color": "#3178C6",
+      "stars": 0,
+      "forks": 1,
+      "topics": [],
+      "category": "Distributed Systems",
+      "pushed_at": "2026-11-27",
+      "created_at": "2025-12-26"
+    },
+    {
       "name": "sandeepkv93.github.io",
       "description": "Portfolio Website",
       "url": "https://github.com/sandeepkv93/sandeepkv93.github.io",
@@ -325,7 +353,7 @@
       "forks": 0,
       "topics": [],
       "category": "Frontend & Demos",
-      "pushed_at": "2026-11-25",
+      "pushed_at": "2026-11-26",
       "created_at": "2017-09-01"
     },
     {
@@ -342,7 +370,7 @@
         "github-config"
       ],
       "category": "Learning & Utilities",
-      "pushed_at": "2026-11-25",
+      "pushed_at": "2026-11-26",
       "created_at": "2021-04-01"
     },
     {
@@ -356,22 +384,8 @@
       "forks": 0,
       "topics": [],
       "category": "Other Projects",
-      "pushed_at": "2026-11-25",
+      "pushed_at": "2026-11-26",
       "created_at": "2025-07-20"
-    },
-    {
-      "name": "distributed-systems-visualizer",
-      "description": "Interactive visual simulations for learning distributed systems, with step controls and in-page theory articles.",
-      "url": "https://github.com/sandeepkv93/distributed-systems-visualizer",
-      "demo": "https://sandeepkv93.github.io/distributed-systems-visualizer/",
-      "language": "TypeScript",
-      "language_color": "#3178C6",
-      "stars": 0,
-      "forks": 1,
-      "topics": [],
-      "category": "Distributed Systems",
-      "pushed_at": "2026-11-25",
-      "created_at": "2025-12-26"
     },
     {
       "name": "workout-audio-coach",
@@ -398,20 +412,6 @@
       "forks": 0,
       "topics": [],
       "category": "Distributed Systems",
-      "pushed_at": "2026-10-03",
-      "created_at": "2026-10-03"
-    },
-    {
-      "name": "credit-card-validator",
-      "description": "",
-      "url": "https://github.com/sandeepkv93/credit-card-validator",
-      "demo": "https://sandeepkv93.github.io/credit-card-validator/",
-      "language": "TypeScript",
-      "language_color": "#3178C6",
-      "stars": 0,
-      "forks": 0,
-      "topics": [],
-      "category": "Other Projects",
       "pushed_at": "2026-10-03",
       "created_at": "2026-10-03"
     },
